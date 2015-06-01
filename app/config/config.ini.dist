@@ -9,6 +9,7 @@ dbname   = modularized
 ;controllersDir = ../app/controllers/
 modelsDir      = ../app/models/
 modulesDir    = ../app/modules/
+tasksDir    = ../app/tasks/
 ;migrationsDir  = ../app/migrations/
 ;viewsDir       = ../app/views/
 ;pluginsDir     = ../app/plugins/
