@@ -6,15 +6,15 @@ password = password
 dbname   = modularized
 
 [application]
-;controllersDir = ../app/controllers/
-modelsDir      = ../app/models/
-modulesDir    = ../app/modules/
-tasksDir    = ../app/tasks/
-;migrationsDir  = ../app/migrations/
-;viewsDir       = ../app/views/
-;pluginsDir     = ../app/plugins/
-;libraryDir     = ../app/library/
-cacheDir       = ../app/cache/
+;controllersDir = controllers/
+modelsDir      = models/
+modulesDir    = modules/
+tasksDir    = tasks/
+;migrationsDir  = migrations/
+;viewsDir       = views/
+;pluginsDir     = plugins/
+;libraryDir     = library/
+cacheDir       = cache/
 ;baseUri        = /
 
 [models]

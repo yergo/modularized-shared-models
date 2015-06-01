@@ -11,7 +11,7 @@ $services = [
 
 foreach($services as $service) {
 	
-	include_once(__DIR__ . '/config/' . $service . '.php');
+	include_once(APPLICATION_PATH . 'config/' . $service . '.php');
 	
 }
 
