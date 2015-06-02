@@ -14,12 +14,6 @@ class ControllerBase extends Controller {
 	 */
 	protected function initialize() {
 
-		$this->_request = [
-			'action' => null,
-			'method' => $this->di->getRequest()->getMethod(),
-			'data'	 => $this->getJsonRequest(),
-		];
-		
 		$this->_response = [
 			'status' => null,
 			'message' => null,
@@ -28,6 +22,27 @@ class ControllerBase extends Controller {
 //			'request' => & $this->_request,
 			'data' => []
 		];
+		
+		try {
+			
+			$this->_request = [
+				'action' => null,
+				'method' => $this->di->getRequest()->getMethod(),
+				'data'	 => $this->getJsonRequest(),
+			];
+			
+		} catch(\Exception $e) {
+			$this->dispatcher->forward([
+				'controller' => 'error',
+				'action'     => 'show503',
+				'params'     => array(
+					'exception' => $e
+				)
+			]);
+			
+			return false;
+		}
+
 	}
 
 	/**
@@ -62,6 +77,17 @@ class ControllerBase extends Controller {
 				$this->response->setStatusCode(503, 'Service Unavailable');
 				break;
 		}
+		
+		// clearing potential warnings
+		$ob = ob_get_clean();
+		if(strlen($ob) > 0) {
+			/**
+			 * @todo some logging of $ob !
+			 */
+			
+		}
+		
+		// settinf response content as JSON
 		$this->response->setJsonContent($frame);
 		
 		return $this->response->send();
@@ -91,14 +117,16 @@ class ControllerBase extends Controller {
 	 * @return array
 	 */
 	protected function getJsonRequest() {
-		$input = $this->request->get('json');
+		$input = $this->request->get('json') ?: file_get_contents('php://input') ;
 
-		if($input === null) {
-			$input = file_get_contents('php://input');
+		if($input !== null) {
+			$data = json_decode($input, JSON_OBJECT_AS_ARRAY);
+			
+			if(json_last_error() !== JSON_ERROR_NONE) {
+				throw new \Exception('JSON unhandled exception: ' . json_last_error_msg());
+			}
 		}
-
-		$data = json_decode($input, JSON_OBJECT_AS_ARRAY);
-
+		
 		return $data ?: [];
 	}
 

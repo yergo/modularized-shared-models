@@ -8,7 +8,7 @@ defined('APPLICATION_DIR') || define('APPLICATION_DIR', 'app');
 defined('APPLICATION_PATH') || define('APPLICATION_PATH', realpath(dirname(__FILE__) . '/../' . APPLICATION_DIR) . '/');
 
 try {
-
+	
 	/**
 	 * Read the configuration
 	 */
@@ -23,5 +23,8 @@ try {
 	echo $application->handle()->getContent();
 	
 } catch(\Exception $e) {
+	/**
+	 * @todo better handler
+	 */
 	var_dump($e);
 }
