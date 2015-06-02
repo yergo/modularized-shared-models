@@ -12,6 +12,7 @@ if (!$di instanceof \Phalcon\DI\FactoryDefault\CLI) {
 		$eventsManager = new EventsManager();
 		$eventsManager->attach("dispatch:beforeException", function($event, $dispatcher, $exception) {
 
+			// handle dispatch exceptions
 			if ($exception instanceof DispatchException) {
 				$dispatcher->forward(array(
 					'controller' => 'error',
@@ -23,6 +24,7 @@ if (!$di instanceof \Phalcon\DI\FactoryDefault\CLI) {
 				return false;
 			}
 
+			// handle all other exceptions
 			$dispatcher->forward(array(
 				'controller' => 'error',
 				'action'     => 'show503',
