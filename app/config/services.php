@@ -27,7 +27,7 @@ $di['session'] = function () {
 }; */
 
 $di->set('voltService', function ($view, $di) {
-    $cacheBaseDir = $di->getConfig()->application->cacheDir . DIRECTORY_SEPARATOR . 'volt';
+    $cacheBaseDir = APPLICATION_PATH . $di->getConfig()->application->cacheDir . 'volt';
 
     if (!is_dir($cacheBaseDir)) {
         $umask = umask(0000);
