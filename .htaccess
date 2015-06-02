@@ -1,5 +1,10 @@
 <IfModule mod_rewrite.c>
 	RewriteEngine on
+
+	RewriteCond %{REQUEST_URI} favicon.ico [NC]
+	RewriteCond %{REQUEST_URI} !/img/favicon.ico [NC]
+	RewriteRule (.*) /img/favicon.ico [R=301,L] 
+
 	RewriteRule  ^$ public/    [L]
 	RewriteRule  (.*) public/$1 [L]
 </IfModule>
