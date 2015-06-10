@@ -7,9 +7,9 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Bootstrap 101 Template</title>
 
-    <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/footer.css" rel="stylesheet">
+	<!-- Bootstrap -->
+    <link href="{{ url("css/bootstrap.min.css") }}" rel="stylesheet">
+    <link href="{{ url("css/footer.css") }}" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -21,8 +21,8 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/footer.js"></script>
+    <script src="{{ url('js/bootstrap.min.js') }}"></script>
+    <script src="{{ url('js/footer.js') }}"></script>
 
   </head>
   <body>
