@@ -55,6 +55,18 @@ class ControllerBase extends Controller {
 
 		$content = $dispatcher->getReturnedValue();
 
+		// clearing potential warnings
+		$ob = ob_get_clean();
+		if(strlen($ob) > 0) {
+			/**
+			 * @todo some logging of $ob !
+			 */
+			$this->response->setStatusCode(500, 'Internal server error');
+			$this->response->setCotent($ob);
+			return $this->resposne->send();
+		}
+
+		
 		if(is_object($content)) {
 			if(is_callable(array($content, 'toArray'))) {
 				$content = $content->toArray();
@@ -76,15 +88,6 @@ class ControllerBase extends Controller {
 			case 500: 
 				$this->response->setStatusCode(503, 'Service Unavailable');
 				break;
-		}
-		
-		// clearing potential warnings
-		$ob = ob_get_clean();
-		if(strlen($ob) > 0) {
-			/**
-			 * @todo some logging of $ob !
-			 */
-			
 		}
 		
 		// settinf response content as JSON
