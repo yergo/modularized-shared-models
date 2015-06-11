@@ -1,0 +1,5 @@
+#! /usr/bin/env bash
+cd "`dirname "$0"`"
+PHALCON=bin/phalcon.php
+
+$PHALCON model $1 --name=$1 --directory=. --namespace='Application\Models\Entities' --output='app/models/entities' --get-set --force
